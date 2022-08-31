@@ -1,0 +1,70 @@
+body {
+    padding: 4%;
+    background-image: url(./assets/vegas.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+#main {
+    padding: 4%
+}
+
+#title {
+    text-align: center;
+    font-weight: 600;
+    font-size: 50px;
+}
+p {
+    font-weight: 700;
+}
+
+#table {
+    background-color: #42855B;
+    border: 4px solid #603601;
+    border-radius: 10px;
+    padding: 4%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#player {
+    background-color: lightgreen;
+    border-radius: 10px;
+    padding: 4%;
+    margin: 2%;
+    display: flex;
+}
+
+#dealer {
+    background-color: lightgreen;
+    border-radius: 10px;
+    padding: 4%;
+    margin: 2%;
+    display: flex;
+}
+
+#buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    margin-left: 4%
+}
+
+img {
+    max-height: 300px;
+    max-width: 100px;
+    margin-right: 20px;
+}
+
+/* img {
+    max-height: 40%;
+    max-width: 15%;
+    margin-right: 4%;
+} */
+
+#title {
+    color: whitesmoke;
+}
