@@ -47,10 +47,26 @@ function dealCard() {
         setTimeout(hitDealer, 2000)
         setTimeout(hitPlayer, 3000)
 
-        if (handValue(playerHand) == 21 || handValue(dealerHand) == 21){
-            alert('Blackjack!');
-            setTimeout(endGame,2000);
-        }
+    if (handValue(playerHand) == 21 || handValue(dealerHand) == 21){
+        alert('Blackjack!');
+        setTimeout(endGame,2000);
+    }
+
+    if (handValue(playerHand) > 21) {
+        playerHand.forEach(card => {
+            if (card.rank == 'ace'){
+                card.value = 1;
+                playerscore.innerText = `Player: ${handValue(playerHand)}`;
+            }
+        })}
+
+    if (handValue(dealerHand) > 21) {
+        dealerHand.forEach(card => {
+            if (card.rank == 'ace'){
+                card.value = 1;
+                dealerscore.innerText = `Player: ${handValue(dealerHand)}`;
+            }
+        })}
 
         wasDealt = true;
     }
@@ -66,30 +82,32 @@ function hitDealer() {
 }
 
 function hitPlayer() {
-    newCard = document.createElement('img')
-    newCard.src = deck[0].imgpath
-    playerHand.push(deck[0])
-    deck.splice(0,1)
-    player.append(newCard)
-    playerscore.innerText = `Player: ${handValue(playerHand)}`;
-    // console.log(playerHand)
+    if (wasDealt == true){
+        newCard = document.createElement('img')
+        newCard.src = deck[0].imgpath
+        playerHand.push(deck[0])
+        deck.splice(0,1)
+        player.append(newCard)
+        playerscore.innerText = `Player: ${handValue(playerHand)}`;
+        // console.log(playerHand)
 
-    if (handValue(playerHand) > 21) {
-        playerHand.forEach(card => {
-            if (card.rank == 'ace'){
-                card.value = 1;
-                playerscore.innerText = `Player: ${handValue(playerHand)}`;
-            }
-        })}
-    if (handValue(playerHand) > 21){    
-        console.log('player hand value: ' + handValue(playerHand));
-        console.log('Player Busts!');
-        // window.onload = function() {
-            setTimeout(function () {
-                alert("Player Busts!");
-            },1000);
-        
-        standCard();
+        if (handValue(playerHand) > 21) {
+            playerHand.forEach(card => {
+                if (card.rank == 'ace'){
+                    card.value = 1;
+                    playerscore.innerText = `Player: ${handValue(playerHand)}`;
+                }
+            })}
+        if (handValue(playerHand) > 21){    
+            console.log('player hand value: ' + handValue(playerHand));
+            console.log('Player Busts!');
+            // window.onload = function() {
+                setTimeout(function () {
+                    alert("Player Busts!");
+                },1000);
+            
+            standCard();
+        }
     }
 }
 
@@ -100,37 +118,37 @@ function hitCard() {
 }
 
 function standCard() {
+    if (wasDealt == true){
+        for (handValue(dealerHand); handValue(dealerHand) < 17;) {
+            setTimeout(hitDealer(), 2000);
+        }
 
-    for (handValue(dealerHand); handValue(dealerHand) < 17;) {
-        hitDealer();
+        if (handValue(dealerHand) > 21) {
+            dealerHand.forEach(card => {
+                if (card.rank == 'ace'){
+                    card.value = 1;
+                    dealerscore.innerText = `Player: ${handValue(dealerHand)}`;
+                }
+            })}
+        
+        for (handValue(dealerHand); handValue(dealerHand) < 17;) {
+            setTimeout(hitDealer(), 2000);
+        }
+
+        if (handValue(dealerHand) > 21) {
+            console.log('Dealer hand value: ' + handValue(dealerHand));
+            console.log('Bust!');
+            // window.onload = function() {
+            setTimeout(function () {
+                alert("Dealer Busts");
+            },1000);
+            setTimeout(endGame,1000);
+        }
+
+        else if (handValue(dealerHand) >= 17) {
+            setTimeout(endGame,1000);
+        }
     }
-
-    if (handValue(dealerHand) > 21) {
-        dealerHand.forEach(card => {
-            if (card.rank == 'ace'){
-                card.value = 1;
-                dealerscore.innerText = `Player: ${handValue(dealerHand)}`;
-            }
-        })}
-    
-    for (handValue(dealerHand); handValue(dealerHand) < 17;) {
-        hitDealer();
-    }
-
-    if (handValue(dealerHand) > 21) {
-        console.log('Dealer hand value: ' + handValue(dealerHand));
-        console.log('Bust!');
-        // window.onload = function() {
-        setTimeout(function () {
-            alert("Dealer Busts");
-        },1000);
-        setTimeout(endGame,1000);
-    }
-
-    else if (handValue(dealerHand) >= 17) {
-        setTimeout(endGame,1000);
-    }
-
 }
 
 function handValue(hand) {
