@@ -43,13 +43,13 @@ function dealCard() {
         shuffle()
 
         hitDealer()
-        hitPlayer()
-        hitDealer()
-        hitPlayer()
+        setTimeout(hitPlayer, 1000)
+        setTimeout(hitDealer, 2000)
+        setTimeout(hitPlayer, 3000)
 
         if (handValue(playerHand) == 21 || handValue(dealerHand) == 21){
             alert('Blackjack!');
-            endGame();
+            setTimeout(endGame,2000);
         }
 
         wasDealt = true;
@@ -84,7 +84,11 @@ function hitPlayer() {
     if (handValue(playerHand) > 21){    
         console.log('player hand value: ' + handValue(playerHand));
         console.log('Player Busts!');
-        alert("Player Busts!");
+        // window.onload = function() {
+            setTimeout(function () {
+                alert("Player Busts!");
+            },1000);
+        
         standCard();
     }
 }
@@ -116,12 +120,15 @@ function standCard() {
     if (handValue(dealerHand) > 21) {
         console.log('Dealer hand value: ' + handValue(dealerHand));
         console.log('Bust!');
-        window.alert("Dealer Busts");
-        endGame();
+        // window.onload = function() {
+        setTimeout(function () {
+            alert("Dealer Busts");
+        },1000);
+        setTimeout(endGame,1000);
     }
 
     else if (handValue(dealerHand) >= 17) {
-        endGame();
+        setTimeout(endGame,1000);
     }
 
 }
@@ -146,16 +153,18 @@ function shuffle() {
 function endGame() {
     if ((handValue(playerHand) > 21 && handValue(dealerHand) > 21) || handValue(playerHand) == handValue(dealerHand)) {
         console.log('Draw!');
+        // window.onload = function() {
         alert("Draw!")
     }
     else if ((handValue(playerHand) > 21 && handValue(dealerHand) <= 21) || ((handValue(playerHand) < handValue(dealerHand)) && handValue(dealerHand) <= 21)) {
         console.log('Dealer wins!');
+        // window.onload = function() {
         alert("Dealer Wins!")
         
     }
     else if ((handValue(playerHand) <= 21 && handValue(dealerHand)) || (handValue(playerHand) > handValue(dealerHand)) && handValue(playerHand) <= 21){
         console.log('Player wins!');
-    
+        // window.onload = function() {
         alert("Player Wins!");
     }
 
