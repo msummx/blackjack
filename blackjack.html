@@ -10,12 +10,21 @@
     <div id="main">
         <h1 id="title">BlackJack</h1>
         <div id="table">
-            <p id="dealerscore">Dealer: </p>
-            <div id="dealer">
             
+            <div id="dealerstats">
+                <div><p id="dealerscore">Dealer: 0</p></div>
+                <div><p id="dealerwins">Wins: 0</p></div>
+            </div>
+
+            <div id="dealer">
+
             </div>
             
-            <p id="playerscore">Player: </p>
+            <div id="playerstats">
+                <div><p id="playerscore">Player: 0</p></div>
+                <div><p id="playerwins">Wins: 0</p></div>
+            </div>
+            
             <div id="player">
             
             </div>
@@ -24,7 +33,7 @@
                 <button class="btn btn-light" id="deal">Deal</button>
                 <button class="btn btn-light" id="hit">Hit</button>
                 <button class="btn btn-light" id="stand">Stand</button>
-                <button class='btn btn-light' onClick="window.location.reload();">Reset</button>
+                <button class='btn btn-light' id="reset">Reset</button>
             </div>
 
         </div>
